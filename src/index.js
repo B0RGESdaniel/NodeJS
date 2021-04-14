@@ -1,5 +1,5 @@
 const express = require('express');
-const { uuid } = require('uuidv4')
+const { v4: uuidv4 } = require('uuid');
 
 const app = express();
 // aplicação criada :)
@@ -10,19 +10,24 @@ const projects = [];
 
 // get recebe dois parâmetros(rota, função que recebe os parametros(request, response))
 app.get('/projects', (request, response) => {
+    const { title } = request.query;
+    const result = title
+        ? projects.filter(project => project.title.includes(title))
+        : projects
+    
     // const { title, owner } = request.query;
     // // desestruturando a resposta do query
     // console.log(title);
     // console.log(owner);
 
-   return response.json(projects);
+   return response.json(result);
 })
 
 app.post('/projects', (request, response) => {
     // exemplo de request body
     const { title, owner } = request.body;
 
-    const project = { id: uuid(), title: title, owner };
+    const project = { id: uuidv4(), title: title, owner };
 
     projects.push(project);
     
