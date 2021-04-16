@@ -1,5 +1,5 @@
 const express = require('express');
-const { uuid, validate } = require('uuid');
+const { v4: uuid, validate } = require('uuid');
 
 const app = express();
 // aplicação criada :)
