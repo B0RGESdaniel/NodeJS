@@ -1,9 +1,11 @@
 const express = require('express');
+const cors = require('cors');
 const { v4: uuid, validate } = require('uuid');
 
 const app = express();
 // aplicação criada :)
 
+app.use(cors());
 app.use(express.json());
 
 const projects = [];
